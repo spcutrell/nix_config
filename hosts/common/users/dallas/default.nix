@@ -5,9 +5,11 @@
     users.dallas = {
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" ];
-      packages = with pkgs; [
-        helix
-      ];
+      packages = builtins.attrValues {
+        inherit (pkgs)
+          helix
+        ;
+      };
       # shell = pkgs.fish;
       initialPassword = "password";
     };
