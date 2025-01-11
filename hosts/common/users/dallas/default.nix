@@ -5,13 +5,10 @@
     users.dallas = {
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" ];
-      packages = builtins.attrValues {
-        inherit (pkgs)
-          helix
-        ;
-      };
       # shell = pkgs.fish;
+      shell = pkgs.murex;
       initialPassword = "password";
+      packages = [ pkgs.murex ];
     };
   };
 }
