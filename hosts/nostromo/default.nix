@@ -4,8 +4,9 @@
       ../common/global
       ../common/users/dallas
       ../common/optional/amd.nix
-      ../common/optional/gnome.nix
       ../common/optional/flatpak.nix
+      ../common/optional/gnome.nix
+      ../common/optional/openssh.nix
       ../common/optional/steam.nix
   ];
 

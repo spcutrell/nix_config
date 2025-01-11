@@ -18,7 +18,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.dallas = import ./home/nostromo.nix;
+          home-manager.users.dallas = import ./home/users/dallas;
         }
       ];
     };

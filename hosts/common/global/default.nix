@@ -3,6 +3,8 @@
     ./locale.nix
     ./nix.nix
   ];
+
+  # programs.fish.enable = true;
   
   networking.networkmanager.enable = true;
 
