@@ -4,8 +4,8 @@
     ./nix.nix
   ];
 
-  # programs.fish.enable = true;
-  
+  programs.fish.enable = true;
+
   networking.networkmanager.enable = true;
 
   boot.loader = {
@@ -21,7 +21,7 @@
   };
 
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -33,11 +33,18 @@
   programs.firefox.enable = true;
 
   environment.systemPackages = builtins.attrValues {
-    inherit(pkgs)
+    inherit (pkgs)
+      alacritty
+      cachix
+      file
+      fuzzel
       git
-      vim 
+      gnupg
+      tree
+      vim
       wget
-    ;
+      which
+      ;
   };
 
   environment.variables.EDITOR = "vim";

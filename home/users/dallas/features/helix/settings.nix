@@ -6,7 +6,7 @@
       scrolloff = 2;
       mouse = false;
       true-color = true;
-      rulers = [80];
+      rulers = [ 80 ];
       auto-pairs = true;
       bufferline = "multiple";
 

@@ -5,10 +5,14 @@
     users.dallas = {
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" ];
-      # shell = pkgs.fish;
-      shell = pkgs.murex;
+      shell = pkgs.fish;
+      # shell = pkgs.murex;
       initialPassword = "password";
       packages = [ pkgs.murex ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJMwLOaGd5W8BdBqmLjirLCskjAxlo4Vra18hPYDpOmx nostromo"
+      ];
+
     };
   };
 }

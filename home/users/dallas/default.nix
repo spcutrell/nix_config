@@ -1,15 +1,17 @@
-{  ... }: {
+{ ... }: {
 
   home.username = "dallas";
   home.homeDirectory = "/home/dallas";
 
   imports = [
-    ./wezterm 
-    ./helix
     ./packages
+    ./features/fish.nix
+    ./features/ghostty.nix
+    ./features/gnome.nix
+    ./features/helix
+    ./features/wezterm
   ];
 
-  # programs.fish.enable = true;
   fonts.fontconfig.enable = true;
 
   programs.home-manager.enable = true;
