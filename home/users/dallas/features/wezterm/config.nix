@@ -4,7 +4,7 @@
 
     local config = wezterm.config_builder()
 
-    -- config.front_end = "WebGpu"
+    config.front_end = "WebGpu"
 
     config.color_scheme = "Everforest Light (Gogh)"
     config.window_background_opacity = 0.95

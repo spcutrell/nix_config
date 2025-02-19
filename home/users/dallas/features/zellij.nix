@@ -1,10 +1,9 @@
 { ... }: {
-  programs.ghostty = {
+  programs.zellij = {
     enable = true;
     enableFishIntegration = true;
     # settings = {
-    #   <PUT SETTINGS HERE>
+    #   <Put settings here>
     # };
-    # theme = <theme>;
   };
 }

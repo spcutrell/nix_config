@@ -7,6 +7,7 @@
     ./packages
     ./features/fish.nix
     ./features/ghostty.nix
+    ./features/zellij.nix
     ./features/gnome.nix
     ./features/helix
     ./features/wezterm
