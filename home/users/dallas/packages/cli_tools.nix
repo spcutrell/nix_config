@@ -1,18 +1,19 @@
-{ pkgs, ... }: {
-  home.packages = builtins.attrValues {
-    inherit (pkgs)
-      bat
-      eza
-      fzf
-      jq
-      nnn
-      ripgrep
-      yq-go
-      ;
+{ ... }: {
+
+  programs.nnn.enable = true;
+  programs.ripgrep.enable = true;
+  programs.jq.enable = true;
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+  programs.bat.enable = true;
+  programs.eza = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   home.shellAliases = {
-    ls = "eza";
     cat = "bat";
   };
 }

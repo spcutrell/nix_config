@@ -3,9 +3,7 @@
     pkgs.gnomeExtensions.paperwm
   ];
 
-  dconf = {
-    enable = true;
-    settings = {
+  dconf.settings = {
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = [
@@ -15,6 +13,5 @@
 
       # Configure individual extensions
       # "org/gnome/shell/extensions/paperwm" = { };
-    };
   };
 }

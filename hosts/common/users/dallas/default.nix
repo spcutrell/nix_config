@@ -6,7 +6,6 @@
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" ];
       shell = pkgs.fish;
-      # shell = pkgs.murex;
       initialPassword = "password";
       packages = [ pkgs.murex ];
       openssh.authorizedKeys.keys = [

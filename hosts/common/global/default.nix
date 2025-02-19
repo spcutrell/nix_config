@@ -1,53 +1,72 @@
-{ pkgs, ... }: {
-  imports = [
-    ./locale.nix
-    ./nix.nix
-  ];
+{ pkgs, config, ... }: {
 
-  programs.fish.enable = true;
-
+  # System Configuration
   networking.networkmanager.enable = true;
+  time.timeZone = "America/New_York";
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-
+  # Core Services
+  services.udisks2.enable = true;
   services.printing.enable = true;
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  # Security
+  security.polkit.enable = true;
+
+  # Boot Config
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    extraModulePackages = [                                                       
+      (config.boot.kernelPackages.callPackage ../optional/xpad-noone.nix { })                   
+    ];                                                                                 
+    kernelModules = [ "xpad-noone" ];  
   };
 
-
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
+  hardware.graphics = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+    enable32Bit = true;
+    steam-hardware.enable = true;
+    xone.enable = true;
   };
 
-  programs.firefox.enable = true;
-
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs)
-      alacritty
-      cachix
-      file
-      fuzzel
-      git
-      gnupg
-      tree
-      vim
-      wget
-      which
-      ;
+  # Audio
+  security.rtkit.enable = true;
+  services.pulseaudio.enable = false;
+  services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
   };
 
-  environment.variables.EDITOR = "vim";
+  #System software
+  programs = {
+    firefox.enable = true;
+    fish.enable = true;
+  };
+  environment = {
+    systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        alacritty
+        cachix
+        curl
+        file
+        git
+        gnupg
+        tree
+        vim
+        wget
+        which
+        ;
+    };
+    variables.EDITOR = "vim";
+  };
 
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "dallas" ];
+  };
+  nixpkgs.config.allowUnfree = true;
 
 }
