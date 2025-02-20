@@ -2,11 +2,10 @@
   programs.fish = {
     enable = true;
 
-    programs.fish.plugins = builtins.attrValues {
-      inherit (pkgs.fishPlugins)
-        hydro
-      ;
-    };
+    plugins = [{
+      name = "hydro";
+      src = pkgs.fishPlugins.hydro.src;
+    }];
 
     shellAliases = {
       tree = "eza --all --long --tree";

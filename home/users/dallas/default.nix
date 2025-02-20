@@ -7,6 +7,7 @@
     ./features/cli_enhancements.nix
     ./features/developers_tools.nix
     ./features/fish.nix
+    ./features/fonts.nix
     ./features/ghostty.nix
     ./features/gnome.nix
     ./features/helix
