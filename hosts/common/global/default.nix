@@ -46,6 +46,8 @@
   programs = {
     firefox.enable = true;
     fish.enable = true;
+    git.enable = true;
+    vim.enable = true;
   };
   environment = {
     systemPackages = builtins.attrValues {
@@ -54,12 +56,16 @@
         cachix
         curl
         file
-        git
         gnupg
+        nix-output-monitor
+        p7zip
         tree
-        vim
+        unzip
         wget
         which
+        xz
+        zip
+        zstd
         ;
     };
     variables.EDITOR = "vim";

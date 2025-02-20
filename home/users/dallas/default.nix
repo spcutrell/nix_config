@@ -4,13 +4,14 @@
   home.homeDirectory = "/home/dallas";
 
   imports = [
-    ./packages
+    ./features/cli_enhancements.nix
+    ./features/developers_tools.nix
     ./features/fish.nix
     ./features/ghostty.nix
-    ./features/zellij.nix
     ./features/gnome.nix
     ./features/helix
     ./features/wezterm
+    ./features/zellij.nix
   ];
 
   fonts.fontconfig.enable = true;

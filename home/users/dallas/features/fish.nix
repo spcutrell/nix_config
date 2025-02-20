@@ -4,14 +4,9 @@
 
     programs.fish.plugins = builtins.attrValues {
       inherit (pkgs.fishPlugins)
-        z
         hydro
       ;
     };
-
-    shellInit = ''
-      set -U Z_CMD "j"
-    '';
 
     shellAliases = {
       tree = "eza --all --long --tree";
