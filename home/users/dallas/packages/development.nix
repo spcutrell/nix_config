@@ -1,9 +1,5 @@
 { pkgs, ... }: {
-  programs.direnv = {
-    enable = true;
-    enableFishIntegration = true;
-    nix-direnv.enable = true;     
-  };
+  programs.direnv.enable = true;
 
   home.packages = builtins.attrValues {
     inherit (pkgs)
