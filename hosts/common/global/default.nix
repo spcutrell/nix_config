@@ -7,6 +7,11 @@
   # Core Services
   services.udisks2.enable = true;
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Security
   security.polkit.enable = true;
