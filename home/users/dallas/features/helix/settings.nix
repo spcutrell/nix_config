@@ -1,6 +1,6 @@
 { ... }: {
   programs.helix.settings = {
-    theme = "everforest_light";
+    # theme = "everforest_light";
 
     editor = {
       scrolloff = 2;

@@ -6,6 +6,7 @@
     ../common/optional/flatpak.nix
     ../common/optional/gnome.nix
     ../common/optional/openssh.nix
+    ../common/optional/stylix.nix
   ];
 
   networking.hostName = "nostromo";
