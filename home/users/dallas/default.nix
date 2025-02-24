@@ -4,6 +4,7 @@
   home.homeDirectory = "/home/dallas";
 
   imports = [
+    ./stylix.nix
     ./features/cli_enhancements.nix
     ./features/developers_tools.nix
     ./features/fish.nix

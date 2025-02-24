@@ -1,6 +1,7 @@
 { ... }: {
+  stylix.targets.helix.enable = false;
   programs.helix.settings = {
-    # theme = "everforest_light";
+    theme = "solarized_dark";
 
     editor = {
       scrolloff = 2;

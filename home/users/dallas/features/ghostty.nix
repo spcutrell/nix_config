@@ -5,6 +5,5 @@
     # settings = {
     #   <PUT SETTINGS HERE>
     # };
-    # theme = <theme>;
   };
 }
