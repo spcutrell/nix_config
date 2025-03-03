@@ -6,7 +6,7 @@
     stylix = {
       enable = true;
       image = "${artifactDir}/${wallpaper}";
-  #     base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
     };
   }
 

@@ -5,7 +5,7 @@ let
   # nf = pkgs.nerd-fonts;
 in { 
   stylix = {
-    # enable = true;
+    targets.gtk.flatpakSupport.enable = false;
     image = "${artifactDir}/${wallpaper}";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
     # fonts = {}

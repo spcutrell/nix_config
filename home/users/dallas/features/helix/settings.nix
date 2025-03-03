@@ -1,7 +1,7 @@
 { ... }: {
   stylix.targets.helix.enable = false;
   programs.helix.settings = {
-    theme = "solarized_dark";
+    theme = "material_oceanic";
 
     editor = {
       scrolloff = 2;

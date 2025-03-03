@@ -9,9 +9,6 @@
     config.color_scheme = "Everforest Light (Gogh)"
     config.window_background_opacity = 0.95
 
-    # config.font = wezterm.font "Inconsolata Nerd Font Mono"
-    # config.font_size = 16
-
     config.hide_tab_bar_if_only_one_tab = true
 
     -- keybindings
