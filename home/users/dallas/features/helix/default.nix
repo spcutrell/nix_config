@@ -1,18 +1,19 @@
 { pkgs, lib, ... }:
 let
   languagesDir = ./languages;
-  files = lib.filterAttrs (n: v:
-    v == "regular" &&
-    n != "default.nix" &&
-    lib.hasSuffix ".nix" n) (builtins.readDir languagesDir);
-
-  importedConfigs = lib.mapAttrsToList (name: _:
-    import (languagesDir + "/${name}")) files;
-
-  allLanguages = lib.concatLists (map (cfg:
-    cfg.language or []) importedConfigs);
-
-  languageConfigs = { language = allLanguages; };
+  languageConfigs = {
+    language =
+      builtins.readDir languagesDir
+      |> lib.filterAttrs (n: v:
+          v == "regular" &&
+          n != "default.nix" &&
+          lib.hasSuffix ".nix" n)
+      |> lib.mapAttrsToList (name: _:
+          import (languagesDir + "/${name}"))
+      |> map (cfg: cfg.language or [])
+      |> lib.concatLists
+      ;
+  };
 in {
   imports = [ ./settings.nix ];
 
