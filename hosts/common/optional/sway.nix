@@ -1,14 +1,36 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    grim # screenshot functionality
-    slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by swaywm maintainer
-  ];
+  # TODO: Pull this out into its own module
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = ''
+          ${pkgs.greetd.tuigreet}/bin/tuigreet \
+            --time \
+            --remember \
+            --remember-user-session \
+            --asterisks \
+            --cmd sway
+        '';
+        user = "greeter";
+      };
+    };
+  };
 
-  # enable Sway window manager
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      grim
+      slurp
+      wl-clipboard
+      mako
+      fuzzel
+      ;
+  };
+
   programs.sway = {
     enable = true;
+    package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
   };
+
 }

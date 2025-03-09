@@ -22,10 +22,10 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    extraModulePackages = [                                                       
-      (config.boot.kernelPackages.callPackage ../optional/xpad-noone.nix { })                   
-    ];                                                                                 
-    kernelModules = [ "xpad-noone" ];  
+    extraModulePackages = [
+      (config.boot.kernelPackages.callPackage ../optional/xpad-noone.nix { })
+    ];
+    kernelModules = [ "xpad-noone" ];
   };
 
   hardware = {
@@ -41,10 +41,10 @@
   security.rtkit.enable = true;
   services.pulseaudio.enable = false;
   services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 
   #System software
@@ -57,11 +57,12 @@
   environment = {
     systemPackages = builtins.attrValues {
       inherit (pkgs)
-        alacritty
         cachix
         curl
         file
+        foot
         gnupg
+        libnotify
         nix-output-monitor
         p7zip
         tree
@@ -77,7 +78,7 @@
   };
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" "pipe-operators"];
+    experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
     trusted-users = [ "dallas" ];
   };
   nixpkgs.config.allowUnfree = true;

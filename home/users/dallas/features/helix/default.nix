@@ -4,17 +4,17 @@ let
   languageConfigs = {
     language =
       builtins.readDir languagesDir
-      |> lib.filterAttrs (n: v:
-          v == "regular" &&
-          n != "default.nix" &&
-          lib.hasSuffix ".nix" n)
+      | > lib.filterAttrs (n: v:
+        v == "regular" &&
+        n != "default.nix" &&
+        lib.hasSuffix ".nix" n)
       |> lib.mapAttrsToList (name: _:
-          import (languagesDir + "/${name}"))
-      |> map (cfg: cfg.language or [])
-      |> lib.concatLists
-      ;
+    import (languagesDir + "/${name}"))
+    |> lib.concatMap(cfg: cfg.language or [])
+    ;
   };
-in {
+in
+{
   imports = [ ./settings.nix ];
 
   programs.helix = {

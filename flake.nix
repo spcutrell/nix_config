@@ -26,7 +26,6 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/nostromo
-          stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {
             home-manager = {

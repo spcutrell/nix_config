@@ -3,7 +3,8 @@ let
   artifactDir = ../../../artifacts;
   wallpaper = "queen.png";
   # nf = pkgs.nerd-fonts;
-in { 
+in
+{
   stylix = {
     targets.gtk.flatpakSupport.enable = false;
     image = "${artifactDir}/${wallpaper}";

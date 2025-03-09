@@ -1,8 +1,8 @@
-{
-  stdenv,
-  lib,
-  fetchFromGitHub,
-  kernel,
+{ stdenv
+, lib
+, fetchFromGitHub
+, kernel
+,
 }:
 
 stdenv.mkDerivation rec {
@@ -33,5 +33,5 @@ stdenv.mkDerivation rec {
     description = "Enables usage of older Xbox peripherals";
     license = licenses.gpl2Plus;
     platforms = platforms.linux;
-  };                                                                                 
+  };
 }

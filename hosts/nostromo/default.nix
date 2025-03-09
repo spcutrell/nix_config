@@ -4,9 +4,9 @@
     ../common/global
     ../common/users/dallas
     ../common/optional/flatpak.nix
-    ../common/optional/gnome.nix
     ../common/optional/openssh.nix
-    ../common/optional/stylix.nix
+    ../common/optional/gnome.nix
+    ../common/optional/sway.nix
   ];
 
   networking.hostName = "nostromo";
