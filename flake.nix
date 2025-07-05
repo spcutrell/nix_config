@@ -18,9 +18,13 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    idle-inhibit = {
+      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, stylix, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, stylix, home-manager, idle-inhibit, ... }@inputs:
     {
       nixosConfigurations.nostromo = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };

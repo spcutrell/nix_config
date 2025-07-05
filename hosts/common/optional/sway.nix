@@ -17,20 +17,20 @@
     };
   };
 
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs)
-      grim
-      slurp
-      wl-clipboard
-      mako
-      fuzzel
-      ;
-  };
-
   programs.sway = {
     enable = true;
     package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
+    extraPackages = builtins.attrValues {
+      inherit (pkgs)
+        fuzzel
+        grim
+        mako
+        slurp
+        sway-audio-idle-inhibit
+        wl-clipboard
+      ;
+    };
   };
 
 }

@@ -4,7 +4,7 @@ let
   languageConfigs = {
     language =
       builtins.readDir languagesDir
-      | > lib.filterAttrs (n: v:
+      |> lib.filterAttrs (n: v:
         v == "regular" &&
         n != "default.nix" &&
         lib.hasSuffix ".nix" n)

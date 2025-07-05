@@ -10,10 +10,6 @@
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
       {
-        timeout = 840;
-        command = "${pkgs.libnotify}/bin/notify-send -u critical 'System will sleep in 1 minute'";
-      }
-      {
         timeout = 900;
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
@@ -25,11 +21,15 @@
       }
       {
         event = "lock";
-        command = "swaymsg 'output * dpms off'";
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+      }
+      {
+        event = "unlock";
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
       {
         event = "after-resume";
-        command = "swaymsg 'output * dpms on'";
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
     ];
   };
@@ -54,6 +54,16 @@
         "${modifier}+0" = "workspace number 0";
         "${modifier}+Shift+0" = "move container to workspace number 0";
       };
+
+      window.commands = [
+        { command = "inhibit_idle fullscreen"; criteria = { class = ".*"; }; }
+      ];
+
+      startup = [
+        { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }
+      ];
+
+      defaultWorkspace = "workspace number 1";
     };
   };
 }
