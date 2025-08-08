@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
 
   # System Configuration
   networking.networkmanager.enable = true;
@@ -22,15 +22,12 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    extraModulePackages = [
-      (config.boot.kernelPackages.callPackage ../optional/xpad-noone.nix { })
-    ];
-    kernelModules = [ "xpad-noone" ];
   };
 
   hardware = {
     steam-hardware.enable = true;
     xone.enable = true;
+    xpad-noone.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -82,5 +79,7 @@
     trusted-users = [ "dallas" ];
   };
   nixpkgs.config.allowUnfree = true;
+
+  system.stateVersion = "24.05";
 
 }
