@@ -61,7 +61,7 @@
           ...
         }:
         {
-          checks = {
+    checks = {
             pre-commit-check = inputs.git-hooks-nix.lib.${system}.run {
               src = ./.;
               hooks = {
