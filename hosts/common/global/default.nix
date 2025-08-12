@@ -34,6 +34,8 @@
     };
   };
 
+  services.fwupd.enable = true;
+
   # Audio
   security.rtkit.enable = true;
   services.pulseaudio.enable = false;
@@ -62,7 +64,6 @@
         libnotify
         nix-output-monitor
         p7zip
-        tree
         unzip
         wget
         which

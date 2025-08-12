@@ -61,8 +61,21 @@
           ...
         }:
         {
+          checks = {
+            pre-commit-check = inputs.git-hooks-nix.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                nixfmt-rfc-style = {
+                  enable = true;
+                  settings.width = 110;
+                };
+                deadnix.enable = true;
+                statix.enable = true;
+              };
+            };
+          };
           devShells.default = pkgs.mkShell {
-            #inherit (self'.checks.pre-commit-check) shellHook;
+            inherit (self'.checks.pre-commit-check) shellHook;
             packages =
               with pkgs;
               [
@@ -83,7 +96,10 @@
         nixosConfigurations =
           let
             mkSystem =
-              hostname: username:
+              {
+                hostname,
+                extraModules ? [ ],
+              }:
               inputs.nixpkgs.lib.nixosSystem {
                 specialArgs = { inherit inputs; };
                 modules = [
@@ -93,15 +109,25 @@
                     home-manager = {
                       useGlobalPkgs = true;
                       useUserPackages = true;
-                      users.${username} = import ./home/users/${username};
+                      extraSpecialArgs = { inherit inputs; };
+                      sharedModules = [
+                        ./modules
+                      ];
                     };
                   }
-                ];
+                ] ++ extraModules;
               };
           in
           {
-            nostromo = mkSystem "nostromo" "dallas";
-            narcissus = mkSystem "narcissus" "dallas";
+            nostromo = mkSystem {
+              hostname = "nostromo";
+            };
+            narcissus = mkSystem {
+              hostname = "narcissus";
+              extraModules = [
+                inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
+              ];
+            };
           };
       };
     };
