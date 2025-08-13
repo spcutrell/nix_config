@@ -19,7 +19,7 @@ _: {
       cli.enable = true;
       shells.fish.enable = true;
       zellij.enable = true;
-      # niri.enable = true; TODO: Not a feature yet
+      desktop.niri.enable = true;
     };
   };
 }
