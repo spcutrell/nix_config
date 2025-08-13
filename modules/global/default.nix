@@ -10,6 +10,7 @@ in
   home-config = {
     cli.enable = mkDefault true;
     helix.enable = mkDefault true;
+    terminal.foot.enable = mkDefault true;
     # desktop.gnome.enable = mkDefault true;
   };
   # gui.enable = lib.mkDefault true;

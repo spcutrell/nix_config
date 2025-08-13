@@ -1,12 +1,12 @@
 { lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.home-config.wezterm;
+  cfg = config.home-config.terminal.wezterm;
 in
 {
   imports = [ ./config.nix ];
 
-  options.home-config.wezterm = {
+  options.home-config.terminal.wezterm = {
     enable = mkEnableOption "Wezterm";
   };
 

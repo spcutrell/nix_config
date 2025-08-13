@@ -60,7 +60,6 @@
         cachix
         curl
         file
-        foot
         gnupg
         libnotify
         nix-output-monitor

@@ -18,7 +18,7 @@ in
       enable = true;
       settings = {
         main = {
-          terminal = "${pkgs.foot}/bin/foot";
+          terminal = "${pkgs.foot}/bin/footclient";
           layer = "overlay";
         };
         # colors.background = "ffffffff";
