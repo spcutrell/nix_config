@@ -18,11 +18,12 @@ let
   };
 in
 {
+  imports = [ ./settings.nix ];
+
   options.home-config.helix = {
     enable = mkEnableOption "Helix configuration";
   };
 
-  imports = [ ./settings.nix ];
   config = mkIf cfg.enable {
     programs.helix = {
       enable = true;

@@ -70,7 +70,6 @@
                 statix
                 python311Packages.nix-prefetch-github
                 nixos-generators
-                graphviz
                 deadnix
               ]
               ++ [

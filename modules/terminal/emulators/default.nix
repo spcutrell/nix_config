@@ -1,3 +1,6 @@
 _: {
-  imports = [ ];
+  imports = [
+    ./ghostty
+    ./wezterm
+  ];
 }

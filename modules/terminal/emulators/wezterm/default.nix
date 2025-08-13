@@ -1,9 +1,17 @@
-_: {
+{ lib, config, ... }:
+let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.home-config.wezterm;
+in
+{
+  imports = [ ./config.nix ];
 
-  imports = [
-    ./config.nix
-  ];
+  options.home-config.wezterm = {
+    enable = mkEnableOption "Wezterm";
+  };
 
-  programs.wezterm.enable = true;
+  config = mkIf cfg.enable {
+    programs.wezterm.enable = true;
+  };
 
 }
