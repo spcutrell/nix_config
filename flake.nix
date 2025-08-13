@@ -32,20 +32,8 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      flake-parts,
-      home-manager,
-      niri,
-      idle-inhibit,
-      git-hooks-nix,
-      nixos-hardware,
-      nix-index-database,
-      helix,
-      ...
-    }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
         "aarch64-darwin"
@@ -53,15 +41,13 @@
 
       perSystem =
         {
-          config,
           self',
-          inputs',
           pkgs,
           system,
           ...
         }:
         {
-    checks = {
+          checks = {
             pre-commit-check = inputs.git-hooks-nix.lib.${system}.run {
               src = ./.;
               hooks = {

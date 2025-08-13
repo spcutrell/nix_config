@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   services.mako.enable = true;
 
   services.swayidle = {
@@ -45,7 +46,7 @@
 
       menu = "${pkgs.fuzzel}/bin/fuzzel";
 
-      bars = [{ command = "waybar"; }];
+      bars = [ { command = "waybar"; } ];
 
       keybindings = lib.mkOptionDefault {
         "${modifier}+space" = "exec ${menu}";
@@ -56,7 +57,12 @@
       };
 
       window.commands = [
-        { command = "inhibit_idle fullscreen"; criteria = { class = ".*"; }; }
+        {
+          command = "inhibit_idle fullscreen";
+          criteria = {
+            class = ".*";
+          };
+        }
       ];
 
       startup = [
@@ -67,4 +73,3 @@
     };
   };
 }
-

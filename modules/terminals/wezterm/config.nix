@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   programs.wezterm.extraConfig = ''
     local wezterm = require "wezterm"
 

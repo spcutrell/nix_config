@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   # System Configuration
   networking.networkmanager.enable = true;
@@ -76,8 +77,12 @@
   };
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
-    trusted-users = [ "dallas" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+      "pipe-operators"
+    ];
+    trusted-users = [ "jonesy" ];
   };
   nixpkgs.config.allowUnfree = true;
 

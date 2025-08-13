@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # TODO: Pull this out into its own module
   services.greetd = {
     enable = true;
@@ -29,7 +30,7 @@
         slurp
         sway-audio-idle-inhibit
         wl-clipboard
-      ;
+        ;
     };
   };
 

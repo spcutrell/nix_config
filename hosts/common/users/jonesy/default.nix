@@ -1,10 +1,14 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     # mutableUsers = true; #TURN THIS TO FALSE WHEN EVERYTHING IS 100%
-    users.dallas = {
+    users.jonesy = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
       shell = pkgs.fish;
       initialPassword = "password";
       packages = [ pkgs.murex ];

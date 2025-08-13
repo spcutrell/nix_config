@@ -1,20 +1,19 @@
-{ ... }: {
+_: {
   imports = [
     ./hardware-configuration.nix
     ../common/global
-    ../common/users/dallas
+    ../common/users/jonesy
     ../common/optional/flatpak.nix
     ../common/optional/openssh.nix
     ../common/optional/gnome.nix
     # ../common/optional/sway.nix
   ];
 
-
   networking.hostName = "narcissus";
 
-  home-manager.users.dallas = {
-    home.username = "dallas";
-    home.homeDirectory = "/home/dallas";
+  home-manager.users.jonesy = {
+    home.username = "jonesy";
+    home.homeDirectory = "/home/jonesy";
     home-config = {
       cli.enable = true;
       shells.fish.enable = true;

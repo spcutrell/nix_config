@@ -1,8 +1,14 @@
-{pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.home-config.shells.fish;
-in {
+in
+{
 
   options.home-config.shells.fish = {
     enable = mkEnableOption "Fish plugins and enhancements";
@@ -12,10 +18,12 @@ in {
     programs.fish = {
       enable = true;
 
-      plugins = [{
-        name = "hydro";
-        src = pkgs.fishPlugins.hydro.src;
-      }];
+      plugins = [
+        {
+          name = "hydro";
+          src = pkgs.fishPlugins.hydro.src;
+        }
+      ];
 
       # shellAliases = {
       #   tree = "eza --all --long --tree";

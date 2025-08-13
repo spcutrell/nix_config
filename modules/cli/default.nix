@@ -2,9 +2,10 @@
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.home-config.cli;
-in {
+in
+{
   options.home-config.cli = {
-    enable = mkEnableOption "CLI tools and enhancements"; 
+    enable = mkEnableOption "CLI tools and enhancements";
   };
 
   config = mkIf cfg.enable {

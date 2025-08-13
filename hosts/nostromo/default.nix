@@ -1,8 +1,8 @@
-{ ... }: {
+_: {
   imports = [
     ./hardware-configuration.nix
     ../common/global
-    ../common/users/dallas
+    ../common/users/jonesy
     ../common/optional/flatpak.nix
     ../common/optional/openssh.nix
     ../common/optional/gnome.nix
