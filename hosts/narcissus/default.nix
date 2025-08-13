@@ -6,6 +6,7 @@ _: {
     ../common/optional/flatpak.nix
     ../common/optional/openssh.nix
     ../common/optional/gnome.nix
+    ../common/optional/niri.nix
     # ../common/optional/sway.nix
   ];
 
@@ -18,6 +19,7 @@ _: {
       cli.enable = true;
       shells.fish.enable = true;
       zellij.enable = true;
+      # niri.enable = true; TODO: Not a feature yet
     };
   };
 }

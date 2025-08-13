@@ -3,8 +3,8 @@ _: {
     ./global
     ./cli
     ./desktop
-    ./helix
-    ./shells
-    ./zellij
+    ./development
+    ./fonts
+    ./terminal
   ];
 }

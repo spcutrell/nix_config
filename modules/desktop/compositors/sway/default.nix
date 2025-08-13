@@ -35,8 +35,7 @@
     ];
   };
 
-  home.packages = [ pkgs.waybar ];
-  programs.waybar.enable = true;
+  desktop-options.waybar.enable = true;
 
   wayland.windowManager.sway = {
     enable = true;

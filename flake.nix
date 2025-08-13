@@ -34,6 +34,10 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.git-hooks-nix.flakeModule
+      ];
+
       systems = [
         "x86_64-linux"
         "aarch64-darwin"
@@ -41,27 +45,24 @@
 
       perSystem =
         {
-          self',
+          config,
           pkgs,
-          system,
           ...
         }:
         {
-          checks = {
-            pre-commit.settings = {
-              src = ./.;
-              hooks = {
-                nixfmt-rfc-style = {
-                  enable = true;
-                  settings.width = 110;
-                };
-                deadnix.enable = true;
-                statix.enable = true;
+          pre-commit.settings = {
+            src = ./.;
+            hooks = {
+              nixfmt-rfc-style = {
+                enable = true;
+                settings.width = 110;
               };
+              deadnix.enable = true;
             };
           };
+
           devShells.default = pkgs.mkShell {
-            inherit (self'.checks.pre-commit-check) shellHook;
+            shellHook = config.pre-commit.installationScript;
             packages =
               with pkgs;
               [
@@ -91,7 +92,9 @@
                 modules = [
                   ./hosts/${hostname}
                   inputs.home-manager.nixosModules.home-manager
+                  inputs.niri.nixosModules.niri
                   {
+                    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
                     home-manager = {
                       useGlobalPkgs = true;
                       useUserPackages = true;
