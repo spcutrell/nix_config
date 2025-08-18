@@ -1,10 +1,11 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.home-config.terminal.ghostty;
-in
-{
-
+in {
   options.home-config.terminal.ghostty = {
     enable = mkEnableOption "Ghostty";
   };

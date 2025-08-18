@@ -1,9 +1,9 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.direnv.enable = true;
 
   home.packages = builtins.attrValues {
-    inherit (pkgs)
+    inherit
+      (pkgs)
       devenv
       ;
   };

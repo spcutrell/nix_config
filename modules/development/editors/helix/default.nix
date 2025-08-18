@@ -4,8 +4,7 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.home-config.helix;
   languagesDir = ./languages;
@@ -14,11 +13,10 @@ let
       builtins.readDir languagesDir
       |> lib.filterAttrs (n: v: v == "regular" && n != "default.nix" && lib.hasSuffix ".nix" n)
       |> lib.mapAttrsToList (name: _: import (languagesDir + "/${name}"))
-      |> lib.concatMap (cfg: cfg.language or [ ]);
+      |> lib.concatMap (cfg: cfg.language or []);
   };
-in
-{
-  imports = [ ./settings.nix ];
+in {
+  imports = [./settings.nix];
 
   options.home-config.helix = {
     enable = mkEnableOption "Helix configuration";

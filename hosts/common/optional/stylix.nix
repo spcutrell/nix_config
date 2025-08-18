@@ -1,9 +1,7 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   artifactDir = ../../../artifacts;
   wallpaper = "weyland.png";
-in
-{
+in {
   stylix = {
     enable = true;
     image = "${artifactDir}/${wallpaper}";

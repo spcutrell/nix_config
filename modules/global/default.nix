@@ -1,8 +1,6 @@
-{ lib, ... }:
-let
+{lib, ...}: let
   inherit (lib) mkDefault;
-in
-{
+in {
   programs.home-manager.enable = true;
   home.stateVersion = "24.05";
 

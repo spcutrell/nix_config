@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   nf = pkgs.nerd-fonts;
-in
-{
+in {
   home.packages = [
     nf.inconsolata
   ];

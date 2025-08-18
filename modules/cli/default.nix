@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.home-config.cli;
-in
-{
+in {
   options.home-config.cli = {
     enable = mkEnableOption "CLI tools and enhancements";
   };
@@ -18,7 +20,7 @@ in
       ripgrep.enable = true;
       zoxide = {
         enable = true;
-        options = [ "--cmd j" ];
+        options = ["--cmd j"];
       };
     };
 

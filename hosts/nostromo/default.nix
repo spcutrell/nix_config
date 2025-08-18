@@ -10,5 +10,4 @@ _: {
   ];
 
   networking.hostName = "nostromo";
-
 }

@@ -3,12 +3,10 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.home-config.desktop.sway;
-in
-{
+in {
   options.home-config.desktop.sway = {
     enable = mkEnableOption "Sway";
   };
@@ -49,17 +47,16 @@ in
       ];
     };
 
-    desktop-options.waybar.enable = true;
+    # desktop-options.waybar.enable = true;
 
     wayland.windowManager.sway = {
       enable = true;
       config = rec {
-
         modifier = "Mod4";
 
         menu = "${pkgs.fuzzel}/bin/fuzzel";
 
-        bars = [ { command = "waybar"; } ];
+        bars = [{command = "waybar";}];
 
         keybindings = lib.mkOptionDefault {
           "${modifier}+space" = "exec ${menu}";
@@ -79,7 +76,7 @@ in
         ];
 
         startup = [
-          { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; }
+          {command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit";}
         ];
 
         defaultWorkspace = "workspace number 1";

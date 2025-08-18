@@ -12,14 +12,16 @@ _: {
 
   networking.hostName = "narcissus";
 
-  home-manager.users.jonesy = {
-    home.username = "jonesy";
-    home.homeDirectory = "/home/jonesy";
-    home-config = {
-      cli.enable = true;
-      shells.fish.enable = true;
-      zellij.enable = true;
-      desktop.niri.enable = true;
+  home-manager.users = {
+    jonesy = {
+      home.username = "jonesy";
+      home.homeDirectory = "/home/jonesy";
+      home-config = {
+        cli.enable = true;
+        shells.fish.enable = true;
+        zellij.enable = true;
+        desktop.niri.enable = true;
+      };
     };
   };
 }

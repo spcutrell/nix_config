@@ -3,13 +3,10 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.home-config.shells.fish;
-in
-{
-
+in {
   options.home-config.shells.fish = {
     enable = mkEnableOption "Fish plugins and enhancements";
   };

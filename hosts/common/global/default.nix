@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   # System Configuration
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
@@ -16,6 +14,16 @@
 
   # Security
   security.polkit.enable = true;
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session";
+        user = "greeter";
+      };
+    };
+  };
 
   # Boot Config
   boot = {
@@ -56,7 +64,9 @@
   };
   environment = {
     systemPackages = builtins.attrValues {
-      inherit (pkgs)
+      inherit
+        (pkgs)
+        btop
         cachix
         curl
         file
@@ -64,10 +74,15 @@
         libnotify
         nix-output-monitor
         p7zip
+        procs
         unzip
+        wev
         wget
         which
+        wl-clipboard
         xz
+        yazi
+        zathura
         zip
         zstd
         ;
@@ -81,10 +96,9 @@
       "flakes"
       "pipe-operators"
     ];
-    trusted-users = [ "jonesy" ];
+    trusted-users = ["jonesy"];
   };
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "24.05";
-
 }

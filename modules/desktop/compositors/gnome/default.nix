@@ -3,12 +3,10 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.home-config.desktop.gnome;
-in
-{
+in {
   options.home-config.desktop.gnome = {
     enable = mkEnableOption "Gnome";
   };

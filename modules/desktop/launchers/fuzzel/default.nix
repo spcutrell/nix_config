@@ -3,12 +3,10 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.desktop-options.fuzzel;
-in
-{
+in {
   options.desktop-options.fuzzel = {
     enable = mkEnableOption "Fuzzel";
   };

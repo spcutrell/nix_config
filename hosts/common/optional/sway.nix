@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # TODO: Pull this out into its own module
   services.greetd = {
     enable = true;
@@ -23,7 +22,8 @@
     package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
     extraPackages = builtins.attrValues {
-      inherit (pkgs)
+      inherit
+        (pkgs)
         fuzzel
         grim
         mako
@@ -33,5 +33,4 @@
         ;
     };
   };
-
 }

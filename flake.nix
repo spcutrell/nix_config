@@ -1,6 +1,29 @@
 {
   description = "NixOS Config Flake";
 
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [
+        ./parts
+      ];
+
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+
+      flake = {
+        hosts = {
+          nostromo = {};
+          narcissus = {
+            extraModules = [
+              inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
+            ];
+          };
+        };
+      };
+    };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -30,93 +53,4 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
-  outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        inputs.git-hooks-nix.flakeModule
-      ];
-
-      systems = [
-        "x86_64-linux"
-        "aarch64-darwin"
-      ];
-
-      perSystem =
-        {
-          config,
-          pkgs,
-          ...
-        }:
-        {
-          pre-commit.settings = {
-            src = ./.;
-            hooks = {
-              nixfmt-rfc-style = {
-                enable = true;
-                settings.width = 110;
-              };
-              deadnix.enable = true;
-            };
-          };
-
-          devShells.default = pkgs.mkShell {
-            shellHook = config.pre-commit.installationScript;
-            packages =
-              with pkgs;
-              [
-                nil
-                statix
-                python311Packages.nix-prefetch-github
-                nixos-generators
-                deadnix
-              ]
-              ++ [
-                pkgs.home-manager
-              ];
-          };
-          formatter = pkgs.nixfmt-rfc-style;
-        };
-      flake = {
-        nixosConfigurations =
-          let
-            mkSystem =
-              {
-                hostname,
-                extraModules ? [ ],
-              }:
-              inputs.nixpkgs.lib.nixosSystem {
-                specialArgs = { inherit inputs; };
-                modules = [
-                  ./hosts/${hostname}
-                  inputs.home-manager.nixosModules.home-manager
-                  inputs.niri.nixosModules.niri
-                  {
-                    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-                    home-manager = {
-                      useGlobalPkgs = true;
-                      useUserPackages = true;
-                      extraSpecialArgs = { inherit inputs; };
-                      sharedModules = [
-                        ./modules
-                      ];
-                    };
-                  }
-                ] ++ extraModules;
-              };
-          in
-          {
-            nostromo = mkSystem {
-              hostname = "nostromo";
-            };
-            narcissus = mkSystem {
-              hostname = "narcissus";
-              extraModules = [
-                inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
-              ];
-            };
-          };
-      };
-    };
 }

@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.home-config.zellij;
-in
-{
+in {
   options.home-config.zellij = {
     enable = mkEnableOption "Enable Zellij with options";
   };
