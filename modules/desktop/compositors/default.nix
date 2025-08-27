@@ -1,7 +1,7 @@
 _: {
   imports = [
     ./gnome
-    ./niri
+    # ./niri
     # ./sway
   ];
 }

@@ -14,7 +14,6 @@ in {
   config = mkIf cfg.enable {
     home.packages = [
       pkgs.gnomeExtensions.paperwm
-      pkgs.rose-pine-gtk-theme
     ];
 
     dconf.settings = {
@@ -41,14 +40,6 @@ in {
         default-folder-viewer = "list-view";
       };
 
-      # "org/gnome/desktop/interface" = {
-      #   # gtk-theme = "Adwaita-dark";
-      #   gtk-theme = "rose-pine-dawn";
-      #   icon-theme = "Papirus-Dark";  # Try: Papirus, Papirus-Dark, Adwaita
-      #   # color-scheme = "prefer-dark";
-      #   cursor-theme = "Adwaita";
-      # };
-
       # PaperWM
       "org/gnome/shell/extensions/paperwm" = {
         # CONFIG
@@ -63,13 +54,6 @@ in {
         # BINDINGS
         # move-left = [ "<Super>h" ];
         # move-right = [ "<Super>l" ];
-      };
-    };
-    gtk = {
-      enable = true;
-      theme = {
-        name = "rose-pine-dawn";
-        package = pkgs.rose-pine-gtk-theme;
       };
     };
   };

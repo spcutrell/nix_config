@@ -6,6 +6,8 @@ _: {
     ../common/optional/flatpak.nix
     ../common/optional/openssh.nix
     ../common/optional/gnome.nix
+    ../common/optional/stylix.nix
+    ../common/optional/fprintd.nix
   ];
 
   networking.networkmanager.wifi.powersave = true;

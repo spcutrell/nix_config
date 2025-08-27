@@ -1,6 +1,6 @@
 _: {
   programs.helix.settings = {
-    theme = "material_oceanic";
+    # theme = "material_oceanic";
 
     editor = {
       scrolloff = 2;

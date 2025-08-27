@@ -1,5 +1,4 @@
 {pkgs, ...}: {
-  # TODO: Pull this out into its own module
   services.greetd = {
     enable = true;
     settings = {

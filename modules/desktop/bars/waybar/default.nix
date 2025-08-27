@@ -84,8 +84,6 @@ in {
         * {
           border: none;
           border-radius: 0;
-          font-family: "JetBrainsMono Nerd Font", monospace;
-          font-size: 13px;
           min-height: 0;
         }
 

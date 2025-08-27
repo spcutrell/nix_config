@@ -4,7 +4,6 @@ _: {
     ./cli
     ./desktop
     ./development
-    ./fonts
     ./terminal
   ];
 }
