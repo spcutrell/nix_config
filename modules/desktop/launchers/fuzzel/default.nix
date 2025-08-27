@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.desktop-options.fuzzel;
+  cfg = config.components.fuzzel;
 in {
-  options.desktop-options.fuzzel = {
+  options.components.fuzzel = {
     enable = mkEnableOption "Fuzzel";
   };
 

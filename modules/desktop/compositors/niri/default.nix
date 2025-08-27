@@ -5,7 +5,7 @@
   ...
 }:
 with lib; let
-  cfg = config.home-config.desktop.niri;
+  cfg = config.features.desktop.niri;
 
   # killall = "${pkgs.killall}/bin/killall";
   brightnessctl = getExe pkgs.brightnessctl;
@@ -19,100 +19,17 @@ with lib; let
   # copyq = "${pkgs.copyq}/bin/copyq";
   # bluetui = "${pkgs.bluetui}/bin/bluetui";
 in {
-  imports = [../../bars/waybar];
-
-  options.home-config.desktop.niri = {
+  options.features.desktop.niri = {
     enable = mkEnableOption "Niri";
   };
 
   config = mkIf cfg.enable {
-    # ----- THESE NEED MOVED TO BE GENERICALLY USEFUL -----
-    programs.hyprlock = {
-      enable = true;
-      settings = {
-        general = {
-          grace = 5;
-          hide_cursor = true;
-        };
-
-        background = [
-          {
-            path = "screenshot";
-            blur_passes = 3;
-            blur_size = 8;
-          }
-        ];
-
-        input-field = [
-          {
-            size = "200, 50";
-            position = "0, -80";
-            monitor = "";
-            dots_center = true;
-            fade_on_empty = false;
-            font_color = "rgb(202, 211, 245)";
-            inner_color = "rgb(91, 96, 120)";
-            outer_color = "rgb(24, 25, 38)";
-            outline_thickness = 5;
-            placeholder_text = "Password...";
-            shadow_passes = 2;
-          }
-        ];
-      };
-    };
-    # ----- THESE TOO -----
-    services = {
-      mako = {
-        enable = true;
-        settings = {
-          width = 300;
-          height = 110;
-          border-size = 2;
-          border-color = "#f38ba8";
-          background-color = "#1e1e2e";
-          text-color = "#cdd6f4";
-          border-radius = 15;
-          default-timeout = 5000;
-          ignore-timeout = 1;
-        };
-      };
-
-      hypridle = {
-        enable = true;
-        settings = {
-          general = {
-            after_sleep_cmd = "hyprctl dispatch dpms on";
-            before_sleep_cmd = "loginctl lock-session";
-            ignore_dbus_inhibit = false;
-            lock_cmd = "pidof hyprlock || hyprlock";
-          };
-
-          listener = [
-            {
-              timeout = 270; # 4.5 minutes (270 seconds)
-              on-timeout = "notify-send 'Screen Lock' 'Locking in 30 seconds' -u normal";
-            }
-            {
-              timeout = 300; # 5 minutes (300 seconds)
-              on-timeout = "loginctl lock-session";
-            }
-            {
-              timeout = 330; # 5.5 minutes - turn off screen 30 seconds after lock
-              on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on";
-            }
-            {
-              timeout = 1800; # 30 minutes - suspend system
-              on-timeout = "systemctl suspend";
-            }
-          ];
-        };
-      };
-    };
-    # ^^^^^ THESE NEED MOVED TO BE GENERICALLY USEFUL ^^^^^
-    desktop-options = {
-      # waybar.enable = true;
+    components = {
       fuzzel.enable = true;
+      # hyprlock.enable = true;
+      swaylock.enable = true;
+      mako.enable = true;
+      waybar.enable = true;
     };
     programs.niri.settings = {
       screenshot-path = "~/Pictures/Screenshots/%Y-%m-%dT%H:%M:%S.png";
@@ -159,21 +76,25 @@ in {
           # Window binds
           {
             "Mod+Left".action = focus-column-left;
+            "Mod+H".action = focus-column-left;
             "Mod+Ctrl+Left".action = move-column-left;
             "Mod+Shift+Left".action = focus-monitor-left;
             "Mod+Shift+Ctrl+Left".action = move-window-to-monitor-left;
 
             "Mod+Right".action = focus-column-right;
+            "Mod+L".action = focus-column-right;
             "Mod+Ctrl+Right".action = move-column-right;
             "Mod+Shift+Right".action = focus-monitor-right;
             "Mod+Shift+Ctrl+Right".action = move-window-to-monitor-right;
 
             "Mod+Up".action = focus-window-up;
+            "Mod+K".action = focus-window-up;
             "Mod+Ctrl+Up".action = move-window-up;
             "Mod+Shift+Up".action = focus-monitor-up;
             "Mod+Shift+Ctrl+Up".action = move-window-to-monitor-up;
 
             "Mod+Down".action = focus-window-down;
+            "Mod+J".action = focus-window-down;
             "Mod+Ctrl+Down".action = move-window-down;
             "Mod+Shift+Down".action = focus-monitor-down;
             "Mod+Shift+Ctrl+Down".action = move-window-to-monitor-down;
@@ -245,6 +166,7 @@ in {
             "Mod+Shift+Ctrl+T".action = toggle-debug-tint;
           }
         ];
+
       input.touchpad = {
         tap = true;
         dwt = true;
@@ -254,10 +176,10 @@ in {
       layout = {
         gaps = 8;
         struts = {
-          top = 0; # removes gap
-          bottom = 0;
-          left = 32;
-          right = 32;
+          top = -4;
+          bottom = -4;
+          left = 4;
+          right = 4;
         };
       };
     };

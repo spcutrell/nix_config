@@ -5,9 +5,9 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.home-config.shells.fish;
+  cfg = config.features.shells.fish;
 in {
-  options.home-config.shells.fish = {
+  options.features.shells.fish = {
     enable = mkEnableOption "Fish plugins and enhancements";
   };
 

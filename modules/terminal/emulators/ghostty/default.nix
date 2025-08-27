@@ -4,9 +4,9 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.home-config.terminal.ghostty;
+  cfg = config.features.terminal.ghostty;
 in {
-  options.home-config.terminal.ghostty = {
+  options.features.terminal.ghostty = {
     enable = mkEnableOption "Ghostty";
   };
 

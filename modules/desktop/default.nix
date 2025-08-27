@@ -3,5 +3,6 @@ _: {
     ./compositors
     ./bars
     ./launchers
+    ./utilities
   ];
 }

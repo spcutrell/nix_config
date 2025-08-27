@@ -5,49 +5,15 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.home-config.desktop.sway;
+  cfg = config.features.desktop.sway;
 in {
-  options.home-config.desktop.sway = {
+  options.features.desktop.sway = {
     enable = mkEnableOption "Sway";
   };
 
   config = mkIf cfg.enable {
     services.mako.enable = true;
-
-    services.swayidle = {
-      enable = true;
-      timeouts = [
-        {
-          timeout = 300;
-          command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
-          resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
-        }
-        {
-          timeout = 900;
-          command = "${pkgs.systemd}/bin/systemctl suspend";
-        }
-      ];
-      events = [
-        {
-          event = "before-sleep";
-          command = "${pkgs.swaylock}/bin/swaylock -f";
-        }
-        {
-          event = "lock";
-          command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
-        }
-        {
-          event = "unlock";
-          command = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
-        }
-        {
-          event = "after-resume";
-          command = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
-        }
-      ];
-    };
-
-    # desktop-options.waybar.enable = true;
+    components.swaylock.enable = true;
 
     wayland.windowManager.sway = {
       enable = true;

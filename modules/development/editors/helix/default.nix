@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.home-config.helix;
+  cfg = config.features.helix;
   languagesDir = ./languages;
   languageConfigs = {
     language =
@@ -18,7 +18,7 @@
 in {
   imports = [./settings.nix];
 
-  options.home-config.helix = {
+  options.features.helix = {
     enable = mkEnableOption "Helix configuration";
   };
 

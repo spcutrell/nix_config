@@ -35,6 +35,7 @@
                 (../hosts + "/${hostname}")
                 inputs.home-manager.nixosModules.home-manager
                 inputs.niri.nixosModules.niri
+                inputs.nix-flatpak.nixosModules.nix-flatpak
                 {
                   nixpkgs.overlays = [inputs.niri.overlays.niri];
                   home-manager = {

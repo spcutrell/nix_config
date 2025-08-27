@@ -15,15 +15,15 @@
   # Security
   security.polkit.enable = true;
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-session";
-        user = "greeter";
-      };
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
+  #       user = "greeter";
+  #     };
+  #   };
+  # };
 
   # Boot Config
   boot = {
@@ -73,6 +73,7 @@
         gnupg
         libnotify
         nix-output-monitor
+        pciutils
         p7zip
         procs
         unzip

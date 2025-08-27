@@ -5,7 +5,7 @@ in {
   home.stateVersion = "24.05";
 
   #SANE DEFAULTS
-  home-config = {
+  features = {
     cli.enable = mkDefault true;
     helix.enable = mkDefault true;
     terminal.foot.enable = mkDefault true;

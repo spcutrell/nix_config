@@ -4,9 +4,9 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.home-config.terminal.foot;
+  cfg = config.features.terminal.foot;
 in {
-  options.home-config.terminal.foot = {
+  options.features.terminal.foot = {
     enable = mkEnableOption "Foot";
   };
 

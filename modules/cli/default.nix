@@ -4,9 +4,9 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.home-config.cli;
+  cfg = config.features.cli;
 in {
-  options.home-config.cli = {
+  options.features.cli = {
     enable = mkEnableOption "CLI tools and enhancements";
   };
 

@@ -4,9 +4,9 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.home-config.zellij;
+  cfg = config.features.zellij;
 in {
-  options.home-config.zellij = {
+  options.features.zellij = {
     enable = mkEnableOption "Enable Zellij with options";
   };
 
