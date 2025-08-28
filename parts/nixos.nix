@@ -36,15 +36,15 @@
                 inputs.home-manager.nixosModules.home-manager
                 inputs.niri.nixosModules.niri
                 inputs.nix-flatpak.nixosModules.nix-flatpak
-                inputs.stylix.nixosModules.stylix
+                # inputs.stylix.nixosModules.stylix
                 {
-                  nixpkgs.overlays = [inputs.niri.overlays.niri];
                   home-manager = {
                     useGlobalPkgs = true;
                     useUserPackages = true;
                     extraSpecialArgs = {inherit inputs;};
                     sharedModules = [
                       ../modules
+                      inputs.stylix.homeModules.stylix
                     ];
                   };
                 }

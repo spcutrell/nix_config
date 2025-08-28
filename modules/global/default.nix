@@ -9,10 +9,5 @@ in {
     cli.enable = mkDefault true;
     helix.enable = mkDefault true;
     terminal.foot.enable = mkDefault true;
-    # desktop.gnome.enable = mkDefault true;
   };
-  # gui.enable = lib.mkDefault true;
-
-  # gaming.enable = lib.mkDefault false;
-  # virtualization.enable = lib.mkDefault false;
 }

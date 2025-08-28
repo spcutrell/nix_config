@@ -2,11 +2,13 @@
   artifactDir = ../../../artifacts;
   wallpaper = "weyland.png";
 in {
+  # https://coolors.co/373f51-80a1c1-f7a9a8-d6d6b1-ffc145
   stylix = {
     enable = true;
     autoEnable = true;
     image = "${artifactDir}/${wallpaper}";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/brushtrees-dark.yaml";
 
     fonts = {
       monospace = {
