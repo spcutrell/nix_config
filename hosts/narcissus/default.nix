@@ -7,6 +7,7 @@
     ../common/optional/openssh.nix
     ../common/optional/gnome.nix
     ../common/optional/fprintd.nix
+    ../common/optional/stylix.nix
   ];
 
   networking.networkmanager.wifi.powersave = true;
@@ -14,50 +15,31 @@
 
   home-manager.users = {
     jonesy = {
-      home.username = "jonesy";
-      home.homeDirectory = "/home/jonesy";
+      home = {
+        username = "jonesy";
+        homeDirectory = "/home/jonesy";
+        packages = [
+          (pkgs.retroarch.withCores (cores:
+            with cores; [
+              genesis-plus-gx
+              snes9x
+              beetle-psx-hw
+            ]))
+        ];
+      };
       features = {
         cli.enable = true;
         shells.fish.enable = true;
         zellij.enable = true;
         desktop.gnome.enable = true;
+        terminal.ghostty.enable = true;
       };
 
       stylix = {
-        enable = true;
-        autoEnable = true;
         image = ../../artifacts/weyland.png;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/brushtrees-dark.yaml";
-
-        fonts = {
-          monospace = {
-            package = pkgs.nerd-fonts.inconsolata;
-            name = "Inconsolata Nerd Font Mono";
-          };
-          sansSerif = {
-            package = pkgs.dejavu_fonts;
-            name = "DejaVu Sans";
-          };
-          serif = {
-            package = pkgs.dejavu_fonts;
-            name = "DejaVu Serif";
-          };
-
-          sizes = {
-            applications = 12;
-            terminal = 11;
-            desktop = 10;
-            popups = 10;
-          };
-        };
-
-        cursor = {
-          package = pkgs.bibata-cursors;
-          name = "Bibata-Modern-Classic";
-          size = 24;
-        };
-
-        targets.qt.enable = false;
+        # base16Scheme = "${pkgs.base16-schemes}/share/themes/brushtrees-dark.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
+        targets.gtk.enable = false;
       };
     };
   };

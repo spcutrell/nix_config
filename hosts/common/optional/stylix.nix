@@ -7,8 +7,8 @@ in {
     enable = true;
     autoEnable = true;
     image = "${artifactDir}/${wallpaper}";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/brushtrees-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/brushtrees-dark.yaml";
 
     fonts = {
       monospace = {
@@ -37,7 +37,5 @@ in {
       name = "Bibata-Modern-Classic";
       size = 24;
     };
-
-    targets.qt.enable = false;
   };
 }

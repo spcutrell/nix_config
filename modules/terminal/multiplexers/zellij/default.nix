@@ -14,9 +14,8 @@ in {
     programs.zellij = {
       enable = true;
       enableFishIntegration = config.programs.fish.enable;
-      # settings = {
-      #   <Put settings here>
-      # };
+      exitShellOnExit = true;
     };
+    xdg.configFile."zellij/config.kdl".source = ./zellij_config.kdl;
   };
 }
